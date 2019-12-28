@@ -1,10 +1,11 @@
-let pkgs = (import ./nix/nixpkgs.nix).nixpkgs {}; in
-let easyPureScript = import ./nix/pkgs/easy-purescript.nix { inherit pkgs; }; in
-
+let
+  pkgs = (import ./nix/nixpkgs.nix).nixpkgs {};
+  easyPureScript = import ./nix/pkgs/easy-purescript.nix { inherit pkgs; };
+in
 pkgs.mkShell {
   buildInputs = [
-    easyPureScript.inputs.purs
-    easyPureScript.inputs.spago
+    easyPureScript.purs
+    easyPureScript.spago
     pkgs.nodejs
   ];
 }
